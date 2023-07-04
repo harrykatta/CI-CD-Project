@@ -3,11 +3,10 @@ Pre-requisites:
     - Install Git
     - Install Maven
     - Install Docker
-    - EKS Cluster
     
 Clone code from github:
 -------
-    git clone https://github.com/ganasai88/CI-CD-Project.git
+    git clone https://github.com/muzafferjoya/CI-CD-Project.git
     cd CI-CD-Project
     
 Build Maven Artifact:
