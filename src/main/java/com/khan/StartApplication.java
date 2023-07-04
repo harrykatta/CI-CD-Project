@@ -12,7 +12,7 @@ public class StartApplication {
 
     @GetMapping("/")
     public String index(final Model model) {
-        model.addAttribute("title", "Spring Boot App + Maven");
+        model.addAttribute("title", "Spring Boot POC Application");
         model.addAttribute("msg", "Welcome to the Spring Boot App");
         model.addAttribute("msg", "Jenkins Docker pipeline");
         return "index";
