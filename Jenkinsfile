@@ -64,25 +64,25 @@ pipeline {
         }
         
         
-        //  stage('Static Code Analysis: Sonarqube'){
-        //        when{expression{params.action == "create"}}      
-        //     steps{
-        //        script{
-        //            def SonarQubecredentialsId = 'SonarQubeapi'
-        //            staticCodeAnalysis(SonarQubecredentialsId)
-        //        }
-        //     }
-        // }
+         stage('Static Code Analysis: Sonarqube'){
+               when{expression{params.action == "create"}}      
+            steps{
+               script{
+                   def SonarQubecredentialsId = 'sonar-scanner'
+                   staticCodeAnalysis(SonarQubecredentialsId)
+               }
+            }
+        }
        
-    //    stage('Quality Gate status check: Sonarqube'){
-    //            when{expression{params.action == "create"}}      
-    //         steps{
-    //            script{
-    //                def SonarQubecredentialsId = 'SonarQubeapi'
-    //                staticCodeAnalysis(SonarQubecredentialsId)
-    //            }
-    //         }
-    //     }
+       stage('Quality Gate status check: Sonarqube'){
+               when{expression{params.action == "create"}}      
+            steps{
+               script{
+                   def SonarQubecredentialsId = 'sonar-scanner'
+                   staticCodeAnalysis(SonarQubecredentialsId)
+               }
+            }
+        }
         
         // stage('Maven build: maven'){
         //       when{expression{params.action == "create"}}       
