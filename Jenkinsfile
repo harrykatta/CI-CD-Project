@@ -27,6 +27,21 @@ pipeline {
             // )
             }
         }
+            stage('Initialize'){
+    
+                steps{
+                    script{
+                    def mavenHome  = tool 'maven'
+                    env.PATH = "${mavenHome}/bin:${env.PATH}"
+                }
+                }
+             }
+    
+            stage('Build'){
+            steps{
+                sh "mvn clean install -DskipTests"
+        }
+        }
          /* 
        stage('Unit Test maven'){
                when{expression{params.action == "create"}}      
