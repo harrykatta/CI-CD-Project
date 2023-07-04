@@ -19,10 +19,12 @@ pipeline {
         stage('Git Checkout'){
                 when{expression{params.action == "create"}}    
             steps{
-            gitCheckout(
-                branch: "main",
-                url: "https://github.com/muzafferjoya/CI-CD-Project.git"
-            )
+
+                git branch: 'main', changelog: false, credentialsId: 'muzaffar-github-cred', poll: false, url: 'https://github.com/muzafferjoya/CI-CD-Project.git'
+            // gitCheckout(
+            //     branch: "main",
+            //     url: "https://github.com/muzafferjoya/CI-CD-Project.git"
+            // )
             }
         }
          /* 
