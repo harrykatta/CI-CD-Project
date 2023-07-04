@@ -104,7 +104,7 @@ pipeline {
                }
             }
         }
-        /* 
+         
         stage('Docker Image scan'){
               when{expression{params.action == "create"}}       
             steps{
@@ -114,25 +114,25 @@ pipeline {
                }
             }
         }
-        stage('Docker Image Push'){
-              when{expression{params.action == "create"}}       
-            steps{
-               script{
+        // stage('Docker Image Push'){
+        //       when{expression{params.action == "create"}}       
+        //     steps{
+        //        script{
                    
-                    dockerImagePush("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-               }
-            }
-        }
-        stage('Docker Image clean'){
-              when{expression{params.action == "create"}}       
-            steps{
-               script{
+        //             dockerImagePush("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
+        //        }
+        //     }
+        // }
+        // stage('Docker Image clean'){
+        //       when{expression{params.action == "create"}}       
+        //     steps{
+        //        script{
                    
-                    dockerImageClean("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-               }
-            }
-        }
-        */       
+        //             dockerImageClean("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
+        //        }
+        //     }
+        // }
+           
  
     }
 }
