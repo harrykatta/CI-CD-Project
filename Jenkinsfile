@@ -36,12 +36,6 @@ pipeline {
                 }
                 }
              }
-    
-        //     stage('Build'){
-        //     steps{
-        //         sh "mvn clean install -DskipTests"
-        // }
-        // }
           
        stage('Unit Test maven'){
                when{expression{params.action == "create"}}      
