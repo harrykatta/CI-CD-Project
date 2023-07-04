@@ -84,15 +84,15 @@ pipeline {
             }
         }
         
-        // stage('Maven build: maven'){
-        //       when{expression{params.action == "create"}}       
-        //     steps{
-        //        script{
+        stage('Maven build: maven'){
+              when{expression{params.action == "create"}}       
+            steps{
+               script{
                    
-        //             mvnBuild()
-        //        }
-        //     }
-        // }
+                    mvnBuild()
+               }
+            }
+        }
          
          
         stage('Docker Image Build'){
