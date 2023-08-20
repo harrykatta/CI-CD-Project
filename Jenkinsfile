@@ -87,6 +87,12 @@ pipeline {
                }
             }
         }
+        stage('Project Dependency Check Stage') {
+            steps {
+                dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'Dependency-Check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+    }
          
          
         stage('Docker Image Build'){
@@ -125,8 +131,6 @@ pipeline {
                     dockerImageClean("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
                }
             }
-        }
-           
- 
+        }          
     }
 }
