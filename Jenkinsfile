@@ -89,7 +89,7 @@ pipeline {
         }
         stage('Project Dependency Check Stage') {
             steps {
-                dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'Dependency-Check'
+                dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DP'
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
     }
