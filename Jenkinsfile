@@ -164,7 +164,7 @@ pipeline {
                 slackSend(
                     color: '#36a64f',
                     message: "Trivy Scan Report",
-                    tokenCredentialId: '$slack-new-user-token',
+                    tokenCredentialId: 'slack-new-user-token',
                     channel: '#reports',
                     attachments: [
                         [
