@@ -120,7 +120,7 @@ pipeline {
             }
         }
          
-        stage('Docker Image scan'){
+        stage('Docker Image scan Using Trivy'){
             steps{
                script{
                    
@@ -137,7 +137,7 @@ pipeline {
                }
             }
         }
-        stage('Docker Image clean Using Trivy'){
+        stage('Docker Image clean'){
               
             steps{
                script{
@@ -160,8 +160,26 @@ pipeline {
                         reportName: 'Trivy Scan Report',
                         reportTitles: ''
                     ])
-                }
+                // Send a notification to Slack
+                slackSend(
+                    color: '#36a64f',
+                    message: "Trivy Scan Report",
+                    tokenCredentialId: '${slack-new-user-token}',
+                    channel: '#reports',
+                    attachments: [
+                        [
+                            title: "Trivy Scan Report",
+                            color: '#36a64f',
+                            text: "Here is the Trivy scan report:",
+                            fields: [
+                                [title: "Report", value: "Link to your report.html", short: false]
+                            ]
+                        ]
+                    ]
+                )
             }
         }
-        }
+                }
+            }
+    
 
