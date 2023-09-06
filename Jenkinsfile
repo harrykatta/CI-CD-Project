@@ -145,6 +145,21 @@ pipeline {
                     dockerImageClean("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
                }
             }
-        }          
+        }
+                stage('Publish HTML Report') {
+            steps {
+                // Publish the Trivy HTML report
+                publishHTML(target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: '',
+                    reportFiles: 'report.html',
+                    reportName: 'Trivy Scan Report',
+                    reportTitles: ''
+                ])
+            }
+        }
     }
-}
+    }
+
