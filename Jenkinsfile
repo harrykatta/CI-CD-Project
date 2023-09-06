@@ -149,8 +149,7 @@ pipeline {
     }
         post {
         always {
-            stage('Publish HTML Report') {
-                steps {
+            script {
                     // Publish the Trivy HTML report
                     publishHTML(target: [
                         allowMissing: false,
@@ -164,6 +163,5 @@ pipeline {
                 }
             }
         }
-    }
-    }
+        }
 
