@@ -135,14 +135,14 @@ pipeline {
                }
             }
         }
-        stage('Docker Image clean'){
-              //when{expression{params.action == "create"}}       
-            steps{
-               script{
+        // stage('Docker Image clean'){
+        //       //when{expression{params.action == "create"}}       
+        //     steps{
+        //        script{
                    
-                    dockerImageClean("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-               }
-            }
-        }          
+        //             dockerImageClean("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
+        //        }
+        //     }
+        // }          
     }
 }
