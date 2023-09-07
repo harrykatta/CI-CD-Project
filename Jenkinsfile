@@ -160,6 +160,9 @@ pipeline {
                         reportName: 'Trivy Scan Report',
                         reportTitles: ''
                     ])
+                // Read the HTML report file as text
+                def reportFileContent = readFile('report.html')
+                
                 // Send a notification to Slack
                 slackSend(
                     color: '#36a64f',
@@ -172,7 +175,7 @@ pipeline {
                             color: '#36a64f',
                             text: "Here is the Trivy scan report:",
                             fields: [
-                                [title: "Report", value: "Link to your report.html", short: false]
+                                [title: "Report", value: reportFileContent, short: false]
                             ]
                         ]
                     ]
