@@ -128,6 +128,15 @@ pipeline {
                }
             }
         }
+            stage('Save HTML Report to File') {
+            steps {
+                // Read the HTML report content
+                def reportFileContent = readFile('report.html')
+
+                // Save the HTML content to a file
+                writeFile(file: 'report.html', text: reportFileContent)
+            }
+        }
         stage('Docker Image Push'){
                 
             steps{
@@ -160,8 +169,6 @@ pipeline {
                         reportName: 'Trivy Scan Report',
                         reportTitles: ''
                     ])
-                // Read the HTML report file as text
-                def reportFileContent = readFile('report.html')
                 
                 // Send a notification to Slack
                 slackSend(
@@ -175,10 +182,12 @@ pipeline {
                             color: '#36a64f',
                             text: "Here is the Trivy scan report:",
                             fields: [
-                                [title: "Report", value: reportFileContent, short: false]
+                                [title: "Report", value: "See attached HTML report" , short: false]
                             ]
                         ]
-                    ]
+                    ],
+                    uploadFile: 'true', // This tells Jenkins to upload the file as an attachment
+                    files: 'report.html' // Specify the filename to attach
                 )
             }
         }
