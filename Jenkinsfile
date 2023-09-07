@@ -128,13 +128,15 @@ pipeline {
                }
             }
         }
-            stage('Save HTML Report to File') {
+        stage('Save HTML Report to File') {
             steps {
-                // Read the HTML report content
-                def reportFileContent = readFile('report.html')
+                script {
+                    // Read the HTML report content
+                    def reportFileContent = readFile('report.html')
 
-                // Save the HTML content to a file
-                writeFile(file: 'report.html', text: reportFileContent)
+                    // Save the HTML content to a file
+                    writeFile(file: 'report.html', text: reportFileContent)
+                }
             }
         }
         stage('Docker Image Push'){
