@@ -172,7 +172,6 @@ pipeline {
             script {
                 // Read the HTML report content
                 def reportFileContent = readFile('report.html')
-
                 // Send a notification to Slack with the HTML report content within the message
                 slackSend(
                     color: '#36a64f',
@@ -180,6 +179,17 @@ pipeline {
                     tokenCredentialId: 'slack-new-user-token',
                     channel: '#reports'
                 )
+            // Archive artifacts and publish HTML report
+            archiveArtifacts artifacts: "report.html", fingerprint: true
+
+            publishHTML (target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: false,
+                keepAll: true,
+                reportDir: '.',
+                reportFiles: 'report.html',
+                reportName: 'Trivy Scan',
+            ])
             }
         }
     }
