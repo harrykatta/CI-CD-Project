@@ -128,6 +128,11 @@ pipeline {
                }
             }
         }
+        stage('Snyk Testing'){
+            steps{
+                snykSecurity organisation: 'muzafferjoya', projectName: 'CI-CD-Project', snykInstallation: 'snyk', snykTokenId: 'synk-api-token', failOnIssues: false, severity: 'medium'
+            }
+        }
         stage('Explore Image Layers with DIVE') { 
             steps { 
                 script {
