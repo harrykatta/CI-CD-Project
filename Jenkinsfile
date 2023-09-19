@@ -133,7 +133,7 @@ pipeline {
                 script {
                     sh "docker run --rm -i \
                         -v /var/run/docker.sock:/var/run/docker.sock \
-                        wagoodman/dive:latest --ci ${hubUser}/${project}:${ImageTag} --lowestEfficiency=0.8 --highestUserWastedPercent=0.45"
+                        wagoodman/dive:latest --ci ${params.DockerHubUser}/${params.ImageName}:${params.ImageTag} --lowestEfficiency=0.8 --highestUserWastedPercent=0.45"
                 }                        
             }            
         }
