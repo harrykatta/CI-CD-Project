@@ -128,6 +128,15 @@ pipeline {
                }
             }
         }
+        stage('Explore Image Layers with DIVE') { 
+            steps { 
+                script {
+                    sh "docker run --rm -i \
+                        -v /var/run/docker.sock:/var/run/docker.sock \
+                        wagoodman/dive:latest --ci ${hubUser}/${project}:${ImageTag} --lowestEfficiency=0.8 --highestUserWastedPercent=0.45"
+                }                        
+            }            
+        }
         stage('Save HTML Report to File') {
             steps {
                 script {
