@@ -99,15 +99,15 @@ pipeline {
                }
             }
         }
-        stage('Project Dependency Check Stage') {
-            steps {
+    //     stage('Project Dependency Check Stage') {
+    //         steps {
 
-                dependencyCheck additionalArguments: '--scan . --format ALL' , odcInstallation: 'DP'
-                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-                //dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'DP'
-               // dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-    }
+    //             dependencyCheck additionalArguments: '--scan . --format ALL' , odcInstallation: 'DP'
+    //             dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+    //             //dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'DP'
+    //            // dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+    //         }
+    // }
          
          
         stage('Docker Image Build'){
@@ -172,71 +172,32 @@ pipeline {
             }
         }    
     }
-        post {
-        always {
-            script {
-                // Read the HTML report content
-                def reportFileContent = readFile('report.html')
-                // Send a notification to Slack with the HTML report content within the message
-                slackSend(
-                    color: '#36a64f',
-                    message: "Trivy Scan Report\n\nHere is the Trivy scan report:\n```\n${reportFileContent}\n```",
-                    tokenCredentialId: 'slack-new-user-token',
-                    channel: '#reports'
-                )
-            // Archive artifacts and publish HTML report
-            archiveArtifacts artifacts: "report.html", fingerprint: true
+}
+    //     post {
+    //     always {
+    //         script {
+    //             // Read the HTML report content
+    //             def reportFileContent = readFile('report.html')
+    //             // Send a notification to Slack with the HTML report content within the message
+    //             slackSend(
+    //                 color: '#36a64f',
+    //                 message: "Trivy Scan Report\n\nHere is the Trivy scan report:\n```\n${reportFileContent}\n```",
+    //                 tokenCredentialId: 'slack-new-user-token',
+    //                 channel: '#reports'
+    //             )
+    //         // Archive artifacts and publish HTML report
+    //         archiveArtifacts artifacts: "report.html", fingerprint: true
 
-            publishHTML (target: [
-                allowMissing: false,
-                alwaysLinkToLastBuild: false,
-                keepAll: true,
-                reportDir: '.',
-                reportFiles: 'report.html',
-                reportName: 'Trivy Scan',
-            ])
-            }
-        }
-    }
-        // post {
-        // always {
-        //     script {
-        //         // Read the HTML report content
-        //         def reportFileContent = readFile('report.html')
-        //             // Publish the Trivy HTML report
-        //             // publishHTML(target: [
-        //             //     allowMissing: false,
-        //             //     alwaysLinkToLastBuild: false,
-        //             //     keepAll: true,
-        //             //     reportDir: '',
-        //             //     reportFiles: 'report.html',
-        //             //     reportName: 'Trivy Scan Report',
-        //             //     reportTitles: ''
-        //             // ])
-                
-        //         // Send a notification to Slack
-        //         slackSend(
-        //             color: '#36a64f',
-        //             //message: "Trivy Scan Report",
-        //             message: "Trivy Scan Report\n\nHere is the Trivy scan report:\n```\n${reportFileContent}\n```",
-        //             tokenCredentialId: 'slack-new-user-token',
-        //             channel: '#reports',
-        //             attachments: [
-        //                 [
-        //                     title: "Trivy Scan Report",
-        //                     color: '#36a64f',
-        //                     text: "Here is the Trivy scan report:",
-        //                     fields: [
-        //                         [title: "Report", value: "See attached HTML report" , short: false]
-        //                     ]
-        //                 ]
-        //             ],
-        //            // uploadFile: 'true', // This tells Jenkins to upload the file as an attachment
-        //            // files: 'report.html' // Specify the filename to attach
-        //         )
-        //     }
-        // }
-        //         }
-            }
+    //         publishHTML (target: [
+    //             allowMissing: false,
+    //             alwaysLinkToLastBuild: false,
+    //             keepAll: true,
+    //             reportDir: '.',
+    //             reportFiles: 'report.html',
+    //             reportName: 'Trivy Scan',
+    //         ])
+    //         }
+    //     }
+    // }
     
 
