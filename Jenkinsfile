@@ -29,7 +29,7 @@ pipeline {
     
                 steps{
                     script{
-                    def mavenHome  = tool 'maven'
+                    def mavenHome  = tool 'maven3'
                     env.PATH = "${mavenHome}/bin:${env.PATH}"
                 }
                 }
