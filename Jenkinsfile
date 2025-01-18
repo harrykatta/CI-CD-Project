@@ -20,7 +20,7 @@ pipeline {
                 //when{expression{params.action == "create"}}    
             steps{
 
-                git branch: 'main', changelog: false, credentialsId: 'muzaffar-github-cred', poll: false, url: 'https://github.com/muzafferjoya/CI-CD-Project.git'
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/harrykatta/CI-CD-Project.git'
             // gitCheckout(
             //     branch: "main",
             //     url: "https://github.com/muzafferjoya/CI-CD-Project.git"
